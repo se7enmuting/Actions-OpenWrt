@@ -37,7 +37,6 @@ def main():
     (work / "feeds.conf.default").write_text("\n".join(lines) + "\n", encoding="utf-8")
     checkout(lock["bandix_backend"], work / "package/custom/bandix-backend")
     checkout(lock["bandix_luci"], work / "package/custom/bandix-luci")
-    shutil.copyfile(RECIPE / "config.seed", work / ".config")
     shutil.copytree(RECIPE / "files", work / "files", dirs_exist_ok=True)
     for f in (work / "files/etc/uci-defaults").iterdir():
         f.chmod(0o755)

@@ -58,8 +58,11 @@ jobs:
         run: |
           set -euo pipefail
           ./scripts/feeds update -a 2>&1 | tee feeds-update.log
-          ./scripts/feeds install -a 2>&1 | tee feeds-install.log
+          ./scripts/feeds install -a -p packages 2>&1 | tee feeds-install.log
+          python3 "$GITHUB_WORKSPACE/immortalwrt-25.12/scripts/configure.py" "$BUILD_DIR" \
+            2>&1 | tee -a feeds-install.log
           make defconfig 2>&1 | tee defconfig.log
+          if grep -q 'recursive dependency detected' defconfig.log; then exit 1; fi
           python3 "$GITHUB_WORKSPACE/immortalwrt-25.12/scripts/verify_config.py" \
             "$GITHUB_WORKSPACE/immortalwrt-25.12/config.seed" .config
           ./scripts/diffconfig.sh > config.buildinfo
@@ -107,6 +110,7 @@ jobs:
             /mnt/immortalwrt-25-pve/logs/
           if-no-files-found: warn
           retention-days: 30
+          include-hidden-files: true
 
   release:
     needs: build
