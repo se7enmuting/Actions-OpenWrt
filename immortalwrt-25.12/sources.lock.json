@@ -1,0 +1,44 @@
+{
+  "release": "25.12.2",
+  "core": {
+    "url": "https://github.com/immortalwrt/immortalwrt.git",
+    "ref": "v25.12.2",
+    "commit": "4fc16f2985a358bd43bb522e43f05395fcbd6ed5"
+  },
+  "feeds": {
+    "packages": {
+      "url": "https://github.com/immortalwrt/packages.git",
+      "commit": "e071e533c3176712775e8932f5a650ef2dcda5e9"
+    },
+    "luci": {
+      "url": "https://github.com/immortalwrt/luci.git",
+      "commit": "c84adb975e207ae8b14982191838ec6218d632cd"
+    },
+    "routing": {
+      "url": "https://github.com/openwrt/routing.git",
+      "commit": "e49d76035aafb85ddc993b59271d8c7ba56b5362"
+    },
+    "telephony": {
+      "url": "https://github.com/openwrt/telephony.git",
+      "commit": "2618106d5846a4a542fdf5809f0d3ed228ce439b"
+    },
+    "video": {
+      "url": "https://github.com/openwrt/video.git",
+      "commit": "094bf58da6682f895255a35a84349a79dab4bf95"
+    }
+  },
+  "bandix_backend": {
+    "url": "https://github.com/timsaya/openwrt-bandix.git",
+    "commit": "0760d1f5b52d1a2317dfd171ab00fe6543a9a0c4"
+  },
+  "bandix_luci": {
+    "url": "https://github.com/timsaya/luci-app-bandix.git",
+    "commit": "108369b8da05f01296a3ed0210a2ab60809712e5",
+    "release": "v0.12.12-r5"
+  },
+  "mihomo": {
+    "version": "v1.19.33",
+    "url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.33/mihomo-linux-amd64-compatible-v1.19.33.gz",
+    "sha256": "386508bfb1c72c43b6a0eda73708ecdce82546581b0ebcb16366c53757c622b6"
+  }
+}

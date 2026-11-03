@@ -2,6 +2,12 @@
 
 # Actions-OpenWrt
 
+## ImmortalWrt 25.12.2 · PVE
+
+新增手动编译入口：**Actions → 21 Build ImmortalWrt 25.12 PVE (Manual)**。
+插件范围、试机说明和构建参数见 [ImmortalWrt 25.12 使用说明](immortalwrt-25.12/README.md)。
+仅手动运行；不会在推送代码或定时任务时生成固件。旧版配置与工作流保留。
+
 [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE)
 ![GitHub Stars](https://img.shields.io/github/stars/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Stars&logo=github)
 ![GitHub Forks](https://img.shields.io/github/forks/P3TERX/Actions-OpenWrt.svg?style=flat-square&label=Forks&logo=github)

@@ -1,0 +1,37 @@
+#!/bin/sh
+# Fresh-image defaults only. No passwords, subscriptions, DNS tokens or site IPs.
+uci -q batch <<'EOF'
+set system.@system[0].timezone='CST-8'
+set system.@system[0].zonename='Asia/Shanghai'
+set luci.main.lang='zh_cn'
+set luci.main.mediaurlbase='/luci-static/argon'
+set firewall.@defaults[0].flow_offloading='0'
+set firewall.@defaults[0].flow_offloading_hw='0'
+set bandix.general.iface='br-lan'
+set bandix.general.host='127.0.0.1'
+set bandix.traffic.enabled='1'
+set bandix.traffic.traffic_realtime_window='600'
+set bandix.traffic.traffic_enable_storage='1'
+set bandix.traffic.traffic_flush_interval='600'
+set bandix.connections.enabled='0'
+set bandix.dns.enabled='0'
+set nlbwmon.@nlbwmon[0].database_directory='/etc/nlbwmon'
+set nlbwmon.@nlbwmon[0].commit_interval='1h'
+set openclash.config.enable='0'
+set openclash.config.core_type='Meta'
+set passwall.@global[0].enabled='0'
+set appfilter.global.enable='0'
+set upnpd.config.enabled='0'
+EOF
+mkdir -p /etc/nlbwmon
+for config in system luci firewall bandix nlbwmon openclash passwall appfilter upnpd; do
+    uci -q commit "$config"
+done
+# Monitor is available immediately; interception/filtering requires local setup.
+for service in bandix nlbwmon qemu-ga; do
+    [ ! -x "/etc/init.d/$service" ] || "/etc/init.d/$service" enable
+done
+for service in openclash passwall appfilter miniupnpd; do
+    [ ! -x "/etc/init.d/$service" ] || "/etc/init.d/$service" disable
+done
+exit 0
